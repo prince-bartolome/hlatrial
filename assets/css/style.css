@@ -1,33 +1,57 @@
 /* Custom checkbox */
 .myinput.large.custom[type="checkbox"]:checked:after {
-  background-image: url(../img/hla_check.png);
+    background-image: url(../img/hla_check.png);
 }
 
 .myinput.large.custom[type="checkbox"]:not(:disabled):checked:hover:after {
-  background-image: url(../img/hla_check.png);
+    background-image: url(../img/hla_check.png);
 }
+
+.pBLockA div.tog02,
+.pBLockB div.tog03,
+.panel div.tog01 {
+    padding: 40px;
+    background: rgb(255, 255, 255);
+    border-top: 1px solid #ebebeb;
+    display: none;
+}
+
+.pBLockA div.tog02 p,
+.pBLockB div.tog03 p,
+.panel div.tog01 p {
+    font-size: 18px;
+    font-family: ProductSans;
+    color: #797979;
+    line-height: 1.2;
+}
+
+
 
 /* Main Classes */
 .myinput[type="checkbox"]:before {
-  position: relative;
-  display: block;
-  width: 27px;
-  height: 27px;
-  border: 1px solid none;
-  content: "";
-  background: #FFF;
+    position: relative;
+    display: block;
+    width: 27px;
+    height: 27px;
+    top: -8px;
+    left: -3px;
+    border: 1px solid none;
+    content: "";
+    background: #FFF;
+    border: 3px solid #25a69d;
+    border-radius: 20px;
 }
 
 .myinput[type="checkbox"]:after {
-position: relative;
+    position: relative;
     display: block;
-    left: -3px;
-    top: -18px;
-    background-color: #fff;
-    width: 27px;
-    height: 27px;
+    left: 5px;
+    top: -33px;
+    /* background-color: #fff; */
+    width: 21px;
+    height: 15px;
     border-radius: 20px;
-    border: 3px solid #25a69d;
+    /* border: 3px solid #25a69d; */
     content: "";
     background-repeat: no-repeat;
     background-position: center;
@@ -1007,6 +1031,12 @@ p.formTitle {
     padding-right: 35px;
 }
 
+.formInfo .agreement .tooltip.top {
+    padding: 5px 0;
+    margin-top: -10px;
+    margin-left: 4px;
+}
+
 .colB {
     padding-left: 35px;
 }
@@ -1014,7 +1044,7 @@ p.formTitle {
 .msgInfo .input-group .form-control {
     height: 73px;
     margin-right: 2%;
-    border-radius: 5px;
+    border-radius: 5px !important;
     float: left;
     width: 23%;
     font-size: 27.5px;
@@ -1267,7 +1297,12 @@ body .c100.greens:hover > span.secondS {
     font-size: 217px;
 }
 
-
+.modBody {
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
 
 
 
@@ -1280,7 +1315,7 @@ body .c100.greens:hover > span.secondS {
     right: 0;
     bottom: 0;
     left: 0;
-    overflow: auto;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.5);
     z-index: 99999;
     animation-name: show;
@@ -1721,11 +1756,23 @@ body .pShow2 {
 
 @media (max-width: 767px) {
 
+    .pBLockA div.tog02,
+    .pBLockB div.tog03,
+    .panel div.tog01 {
+        padding: 15px;
+    }
+
+    .pBLockA div.tog02 p,
+    .pBLockB div.tog03 p,
+    .panel div.tog01 p {
+        font-size: 15.5px;
+    }
+
     .stepHero div.container {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     #step17 > div:first-child {
         padding-left: 0 !important;
     }
@@ -1995,9 +2042,11 @@ body .pShow2 {
     }
 
 
-    .modal {
-        display: none !important;
-    }
+    /*
+.modal {
+display: none !important;
+}
+*/
 
     .colA,
     .colB {
@@ -2070,6 +2119,22 @@ body .pShow2 {
     #accorPanel div.pTitle {
         padding: 15px;
         font-size: 18px;
+    }
+
+}
+
+@media(max-width: 640px) {
+
+    .modal-content {
+        width: auto;
+    }
+
+    .modal {
+        padding: 0 30px;
+    }
+
+    .modal-body {
+        padding: 40px 34px;
     }
 
 }
@@ -2690,5 +2755,81 @@ body .pShow2 {
         font-size: 14px;
         line-height: 18px;
     }
+
+    .myinput[type="checkbox"]:before {
+        position: relative;
+        display: block;
+        width: 20px;
+        height: 20px;
+        top: -2px;
+        left: -3px;
+        border: 1px solid none;
+        content: "";
+        background: #FFF;
+        border: 3px solid #25a69d;
+        border-radius: 20px;
+    }
+
+    .myinput[type="checkbox"]::after {
+        position: relative;
+        display: block;
+        left: 4px;
+        top: -24px;
+        width: 18px;
+        height: 15px;
+        content: "";
+        border-radius: 20px;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .modalDesc {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .modal-body > div.input-group {
+        margin-bottom: 20px;
+    }
+
+    .modImg input {
+        padding: 25px;
+    }
+
+    .modImg input {
+        font-size: 16px;
+    }
+
+    .modImg .input-group-addon {
+        padding: 0px 20px;
+    }
+
+    .modImg img {
+        width: 16px;
+    }
+
+    .modal-body {
+        padding: 30px 34px;
+    }
+
+    .btnDone {
+        font-size: 20.5px;
+
+        padding: 16px 20px 7px 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 24px;
+        font-family: ProximaNova;
+    }
+
+    .modal-header {
+        padding: 44px 12px 38px;
+    }
+
+    .modal-content {
+        margin: 25% 0 10% 0;
+    }
+
 
 }

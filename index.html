@@ -47,9 +47,9 @@
             <form id="theForm" method="post" action="#">
 
                 <div class="divs">
-                   
+
                     <div id="step1" class="active">
-                       
+
                         <!--- heroArea --->
                         <section class="heroArea">
                             <div class="container">
@@ -261,7 +261,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="step7" class="bySteps"><!--no partner-->
+                                    <div id="step7" class="bySteps">
+                                        <!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>Do you have a partner?</h3>
                                         </div>
@@ -276,7 +277,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="step8" class="bySteps" >
+                                    <div id="step8" class="bySteps">
                                         <div class="col-sm-6">
                                             <h3>What is your employment status?</h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at risus fringilla arcu efficitur tincidunt. Aliquam non suscipit erat, vel condimentum felis. Mauris erat eros, ornare non ultricies tempor, feugiat finibus eros.</p>
@@ -292,8 +293,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div id="step9" class="bySteps" data-hide-partner><!--no partner-->
+
+                                    <div id="step9" class="bySteps" data-hide-partner>
+                                        <!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What is your partner’s employment status?</h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at risus fringilla arcu efficitur tincidunt. Aliquam non suscipit erat, vel condimentum felis. Mauris erat eros, ornare non ultricies tempor, feugiat finibus eros.</p>
@@ -324,8 +326,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div id="step11" class="bySteps" data-hide-partner><!--no partner-->
+
+                                    <div id="step11" class="bySteps" data-hide-partner>
+                                        <!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What's your partner gross (i.e pre-tax) annual income?</h3>
                                         </div>
@@ -340,7 +343,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="step12" class="bySteps"><!--no debt-->
+                                    <div id="step12" class="bySteps">
+                                        <!--no debt-->
                                         <div class="col-sm-6">
                                             <h3>Do you have any existing non-mortgage debt?</h3>
                                         </div>
@@ -355,7 +359,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="step13" class="bySteps" data-hide-debt><!--no debt-->
+                                    <div id="step13" class="bySteps" data-hide-debt>
+                                        <!--no debt-->
                                         <div class="col-sm-6">
                                             <h3>How much are your monthly non mortgage debt repayments?</h3>
                                         </div>
@@ -370,7 +375,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="step14" class="bySteps" data-hide-partner><!--no partner-->
+                                    <div id="step14" class="bySteps" data-hide-partner>
+                                        <!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What is your partner's credit card limit?</h3>
                                         </div>
@@ -396,7 +402,7 @@
                                                 <label for="">Phone Number</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id=""><img src="assets/img/hla_phoneiconform.png" alt=""></span>
-                                                    <input type="number" class="form-control" id="ffnumber" name="fnumber" placeholder="Please enter a valid Phone number.." aria-describedby="" required>
+                                                    <input type="number" class="form-control" maxlength="10" id="ffnumber" name="fnumber" placeholder="Please enter a valid Phone number.." aria-describedby="" required>
                                                 </div>
                                                 <p>Please enter a valid mobile number so that we can SMS a verification code to you</p>
                                                 <label for="">Email Address</label>
@@ -407,7 +413,7 @@
                                                 <label for="">Postcode</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id=""><img src="assets/img/hla_locformicon.png" alt=""></span>
-                                                    <input type="number" class="form-control" name="fpcode" placeholder="Please enter your postcode.." aria-describedby="" required>
+                                                    <input type="text" id="suggestion02" class="form-control" name="location" placeholder="Enter postcode or suburb" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p class="agreement"><input type="checkbox" name="checkagree" class="myinput large custom" required><span>I acknowledge a home loans consultant will contact me</span></p>
                                                 <div class="btnContainer02 clearFix">
@@ -545,6 +551,9 @@
                                                         <div class="pTitle">
                                                             <p><span>What</span> happens next?</p>
                                                         </div>
+                                                        <div class="tog01">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores deserunt quaerat minima labore, mollitia possimus eveniet quisquam quae necessitatibus rerum consequuntur nobis delectus inventore, aspernatur laboriosam tempora voluptas animi quam!</p>
+                                                        </div>
                                                     </div>
                                                     <div class="panels clearfix">
 
@@ -552,10 +561,16 @@
                                                             <div class="pTitle">
                                                                 <p><span>Disclaimer</span></p>
                                                             </div>
+                                                            <div class="tog02">
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores deserunt quaerat minima labore, mollitia possimus eveniet quisquam quae necessitatibus rerum consequuntur nobis delectus inventore, aspernatur laboriosam tempora voluptas animi quam!</p>
+                                                            </div>
                                                         </div>
                                                         <div class="pBLockB">
                                                             <div class="pTitle">
                                                                 <p><span>Home</span> Buying FAQs</p>
+                                                            </div>
+                                                            <div class="tog03">
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores deserunt quaerat minima labore, mollitia possimus eveniet quisquam quae necessitatibus rerum consequuntur nobis delectus inventore, aspernatur laboriosam tempora voluptas animi quam!</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -581,9 +596,14 @@
                     </div>
 
                 </div>
-                
-                <!--- modal --->
-                <div id="dmodal" class="modal">
+
+
+
+            </form>
+
+            <!--- modal --->
+            <div id="dmodal" class="modal">
+                <form id="theForms" method="post" action="#">
                     <div class="modal-content">
                         <div class="modal-header">
                             <span class="btnClose"><img src="assets/img/hla_cancel.png" alt=""></span>
@@ -592,10 +612,17 @@
                         <div class="modal-body">
                             <p class="modalDesc">We will send you an SMS activation code, consectetur adipiscing elit. Donec ut lacus nec sapien iaculis vestibulum id in sapien.
                                 Proin elementum cursus rutrum. </p>
-                            <div class="input-group usdInput">
-                                <span class="input-group-addon" id="basic-addon1"><img src="assets/img/hla_modalphone.png" alt=""></span>
-                                <input type="number" class="form-control" maxlength="10" placeholder="Phone number.." id="pnumberss" name="pnumbers" aria-describedby="basic-addon1" required>
+                            <!--
+<div class="input-group usdInput">
+<span class="input-group-addon" id="basic-addon1"><img src="assets/img/hla_modalphone.png" alt=""></span>
+<input type="tel" class="form-control" maxlength="10" placeholder="Phone number.." id="pnumberss" name="pnumbers" aria-describedby="basic-addon1" required>
+</div>
+-->
+                            <div class="input-group usdInput modImg">
+                                <span class="input-group-addon" id=""><img src="assets/img/hla_phoneiconform.png" alt=""></span>
+                                <input type="number" class="form-control" maxlength="10" name="fnumber" placeholder="Please enter a valid Phone number.." aria-describedby="" required>
                             </div>
+
 
                             <div class="btnContainer02 clearFix">
                                 <a class="btnDone" data-btn-sub>Done</a>
@@ -603,10 +630,9 @@
 
                         </div>
                     </div>
-                </div>
-                <!--- /modal --->
-                
-            </form>
+                </form>
+            </div>
+            <!--- /modal --->
 
         </main>
         <!--- /main --->
@@ -636,7 +662,7 @@
     </div>
     <!--- wrapper --->
 
-<!--    <script src="assets/js/jquery-3.4.1.min.js"></script>-->
+    <!--    <script src="assets/js/jquery-3.4.1.min.js"></script>-->
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="assets/js/jquery-ui.js"></script>
     <script src="assets/js/jquery.validate.js"></script>

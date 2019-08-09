@@ -6,10 +6,6 @@ $.validator.addMethod("ffnumber", function (value, element) {
     return this.optional(element) || /^0(4){1}[0-9]{8}$/.test(value);
 }, 'Please enter a phone number');
 
-$.validator.addMethod("numbs", function (value, element) {
-    return this.optional(element) || /^0(4){1}[0-9]{8}$/.test(value);
-}, 'Please enter a phone number');
-
 $.validator.addMethod("address", function (value, element) {
     return this.optional(element) || /^(.+),[\s]*(.+),[\s]*(\d{4})$/.test(value);
 }, "Please select your suburb from the drop down list after typing in your postcode.");
@@ -126,6 +122,7 @@ $(document).ready(function () {
                 fnumber: {
                     required: true,
                     ffnumber: true,
+                    maxlength: 10,
                 },
                 radchoices: {
                     required: true,
@@ -183,6 +180,7 @@ $(document).ready(function () {
             $(nextStep).show();
             window.location.hash = nextStep;
             updateProgressBar(true, increment - 1);
+
         }
 
         if (location.hash) {
@@ -217,22 +215,17 @@ $(document).ready(function () {
 
 
     var onelength = function (elem) {
-
         var input_index = parseInt(elem.attr('id').split('inputsms')[1]) + 1,
             input_next = $('#inputsms' + input_index),
             input_val = elem.val();
-
         if (input_val.length > 1)
             elem.val(input_val.slice(0, 1))
-
         if (input_val.length >= 1 && input_index <= 4)
             input_next.focus();
-
     }
 
     $('.oneleng').keydown(function (event) {
         onelength($(this));
-
         var input_index = parseInt($(this).attr('id').split('inputsms')[1]) - 1,
             key = event.keyCode || event.charCode;
 
@@ -254,37 +247,27 @@ $(document).ready(function () {
         $(this).val('');
     });
 
-    //    $('[data-btn-sub]').on('click', function (event) {
-    $('[data-btn-sub]').click(function (e) {
+    $('[data-btn-sub]').on('click', function (e) {
         e.preventDefault();
-
-        var form = $("#theForm");
-
+        var form = $("#theForms");
         form.validate({
             rules: {
-
-                pnumbers: {
+                fnumber: {
                     required: true,
-                    numbs: true,
-                },
-            },
-            messages: {
-                location: {
-                    required: "Please select your suburb from the drop down list after typing in your postcode.",
-                },
+                    ffnumber: true,
+                    maxlength: 10,
+                }
             }
         });
-
         if (form.valid() == true) {
             $('.modal').hide();
+            $('body').removeClass('modBody');
         }
-
         if (location.hash) {
             setTimeout(function () {
                 window.scrollTo(0, 0);
             }, 1);
         }
-
     });
 
     $('[data-button-prev]').on('click', function (e) {
@@ -374,21 +357,23 @@ $(document).ready(function () {
 
 
     $('.pTitle').on("click", function () {
-        $(this).siblings('div').animate({
-            'height': 'toggle'
-        }, 'slow', 'swing');
+        $(this).siblings('div').slideToggle();
     });
+
 
 
 
     $('.resendBtn').click(function (e) {
         e.preventDefault();
         $('.modal').show();
+        $('body').addClass('modBody');
+
     });
 
     $('.btnClose').click(function (e) {
         e.preventDefault();
         $('.modal').hide();
+        $('body').removeClass('modBody');
     });
 
 
@@ -408,7 +393,7 @@ $.ajax({
 
 
 /* Autocomplete Search Bar */
-$('#suggestion').autocomplete({
+$('#suggestion,#suggestion02').autocomplete({
     source: dataArr
 });
 
