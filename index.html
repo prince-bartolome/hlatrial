@@ -209,7 +209,7 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" name="usdollar" aria-describedby="basic-addon1" required>
+                                                    <input type="tel" maxlength="9" class="form-control money" name="usdollar" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
@@ -239,7 +239,7 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" aria-describedby="basic-addon1" name="usdollar" required>
+                                                    <input type="tel" class="form-control money" maxlength="9" aria-describedby="basic-addon1" name="usdollar" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
@@ -261,22 +261,22 @@
                                         </div>
                                     </div>
 
-                                    <div id="step7" class="bySteps">
+                                    <div id="step7" class="bySteps"><!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>Do you have a partner?</h3>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="stepContC radioStyl">
                                                 <div class="radio">
-                                                    <label><input type="radio" name="radchoices" data-button-next><span><img src="assets/img/hla_checkcircleicon.png" alt=""></span><span>Yes</span></label>
-                                                    <label><input type="radio" name="radchoices" data-button-next><span><img src="assets/img/hla_xicon.png" alt=""></span><span>No</span></label>
+                                                    <label><input type="radio" id="radpartnery" name="radchoices" data-button-next><span><img src="assets/img/hla_checkcircleicon.png" alt=""></span><span>Yes</span></label>
+                                                    <label><input type="radio" id="radpartnern" name="radchoices" data-button-next><span><img src="assets/img/hla_xicon.png" alt=""></span><span>No</span></label>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="step8" class="bySteps">
+                                    <div id="step8" class="bySteps" >
                                         <div class="col-sm-6">
                                             <h3>What is your employment status?</h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at risus fringilla arcu efficitur tincidunt. Aliquam non suscipit erat, vel condimentum felis. Mauris erat eros, ornare non ultricies tempor, feugiat finibus eros.</p>
@@ -292,8 +292,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div id="step9" class="bySteps">
+                                    
+                                    <div id="step9" class="bySteps" data-hide-partner><!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What is your partner’s employment status?</h3>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at risus fringilla arcu efficitur tincidunt. Aliquam non suscipit erat, vel condimentum felis. Mauris erat eros, ornare non ultricies tempor, feugiat finibus eros.</p>
@@ -318,14 +318,14 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" name="usdollar" aria-describedby="basic-addon1" required>
+                                                    <input type="tel" class="form-control money" maxlength="9" name="usdollar" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div id="step11" class="bySteps">
+                                    
+                                    <div id="step11" class="bySteps" data-hide-partner><!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What's your partner gross (i.e pre-tax) annual income?</h3>
                                         </div>
@@ -333,29 +333,29 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" name="usdollar" aria-describedby="basic-addon1" required>
+                                                    <input type="tel" maxlength="9" class="form-control money" name="usdollar" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="step12" class="bySteps">
+                                    <div id="step12" class="bySteps"><!--no debt-->
                                         <div class="col-sm-6">
                                             <h3>Do you have any existing non-mortgage debt?</h3>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="stepContC">
                                                 <div class="radio radioStyl">
-                                                    <label><input type="radio" name="radchoices" data-button-next><span><img src="assets/img/hla_checkcircleicon.png" alt=""></span><span>Yes</span></label>
-                                                    <label><input type="radio" name="radchoices" data-button-next><span><img src="assets/img/hla_xicon.png" alt=""></span><span>No</span></label>
+                                                    <label><input type="radio" name="radchoices" id="hasDebt" data-button-next><span><img src="assets/img/hla_checkcircleicon.png" alt=""></span><span>Yes</span></label>
+                                                    <label><input type="radio" name="radchoices" id="noDebt" data-button-next><span><img src="assets/img/hla_xicon.png" alt=""></span><span>No</span></label>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="step13" class="bySteps">
+                                    <div id="step13" class="bySteps" data-hide-debt><!--no debt-->
                                         <div class="col-sm-6">
                                             <h3>How much are your monthly non mortgage debt repayments?</h3>
                                         </div>
@@ -363,14 +363,14 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" name="usdollar" aria-describedby="basic-addon1" required>
+                                                    <input type="tel" class="form-control money" name="usdollar" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="step14" class="bySteps">
+                                    <div id="step14" class="bySteps" data-hide-partner><!--no partner-->
                                         <div class="col-sm-6">
                                             <h3>What is your partner's credit card limit?</h3>
                                         </div>
@@ -378,7 +378,7 @@
                                             <div class="stepContB">
                                                 <div class="input-group usdInput">
                                                     <span class="input-group-addon" id="basic-addon1">$</span>
-                                                    <input type="number" class="form-control" planameceholder="usdollar" aria-describedby="basic-addon1" required>
+                                                    <input type="tel" maxlength="9" class="form-control money" planameceholder="usdollar" aria-describedby="basic-addon1" required>
                                                 </div>
                                                 <p>Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est viverra at. Cras pulvinar at ante id semper. In semper orci porttitor enim accumsan,</p>
                                             </div>
@@ -391,12 +391,12 @@
                                                 <label for="">Name</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id=""><img src="assets/img/hla_profileicon.png" alt=""></span>
-                                                    <input type="text" class="form-control" name="fname" placeholder="Please enter your name.." aria-describedby="" required>
+                                                    <input type="text" class="form-control" id="ffname" name="fname" placeholder="Please enter your name.." aria-describedby="" required>
                                                 </div>
                                                 <label for="">Phone Number</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id=""><img src="assets/img/hla_phoneiconform.png" alt=""></span>
-                                                    <input type="number" class="form-control" name="fnumber" placeholder="Please enter a valid Phone number.." aria-describedby="" required>
+                                                    <input type="number" class="form-control" id="ffnumber" name="fnumber" placeholder="Please enter a valid Phone number.." aria-describedby="" required>
                                                 </div>
                                                 <p>Please enter a valid mobile number so that we can SMS a verification code to you</p>
                                                 <label for="">Email Address</label>
@@ -409,7 +409,7 @@
                                                     <span class="input-group-addon" id=""><img src="assets/img/hla_locformicon.png" alt=""></span>
                                                     <input type="number" class="form-control" name="fpcode" placeholder="Please enter your postcode.." aria-describedby="" required>
                                                 </div>
-                                                <p class="agreement"><input type="checkbox" name="checkagree" required><span>I acknowledge a home loans consultant will contact me</span></p>
+                                                <p class="agreement"><input type="checkbox" name="checkagree" class="myinput large custom" required><span>I acknowledge a home loans consultant will contact me</span></p>
                                                 <div class="btnContainer02 clearFix">
                                                     <a class="btnSubmit" data-button-next>Get My Deal <img src="assets/img/hla_arrownext.png" alt=""></a>
                                                 </div>
@@ -451,12 +451,12 @@
                                         <div class="col-sm-6">
                                             <div class="colB msgInfo stepContB">
                                                 <div class="input-group">
-                                                    <input maxlength="1" type="number" name="verNum" class="form-control" placeholder="#" aria-describedby="basic-addon1">
-                                                    <input maxlength="1" type="number" name="verNum" class="form-control" placeholder="#" aria-describedby="basic-addon1">
-                                                    <input maxlength="1" type="number" name="verNum" class="form-control" placeholder="#" aria-describedby="basic-addon1">
-                                                    <input maxlength="1" type="number" name="verNum" class="form-control" placeholder="#" aria-describedby="basic-addon1">
+                                                    <input maxlength="1" type="tel" name="verNum" class="form-control oneleng" id="inputsms1" placeholder="#" aria-describedby="basic-addon1" required>
+                                                    <input maxlength="1" type="tel" name="verNum" class="form-control oneleng" id="inputsms2" placeholder="#" aria-describedby="basic-addon1" required>
+                                                    <input maxlength="1" type="tel" name="verNum" class="form-control oneleng" id="inputsms3" placeholder="#" aria-describedby="basic-addon1" required>
+                                                    <input maxlength="1" type="tel" name="verNum" class="form-control oneleng" id="inputsms4" placeholder="#" aria-describedby="basic-addon1" required>
                                                 </div>
-                                                <p class="msgDesc">I didn’t received the verification code yet. Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est <span>viverra at.</span></p>
+                                                <p class="msgDesc">I didn’t received the verification code yet. Suspendisse potenti. Etiam bibendum nisi quam, ac ornare est <span><a class="resendBtn" href="#">viverra at.</a></span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -594,7 +594,7 @@
                                 Proin elementum cursus rutrum. </p>
                             <div class="input-group usdInput">
                                 <span class="input-group-addon" id="basic-addon1"><img src="assets/img/hla_modalphone.png" alt=""></span>
-                                <input type="number" class="form-control" placeholder="Phone number.." name="pnumbers" aria-describedby="basic-addon1" required>
+                                <input type="number" class="form-control" maxlength="10" placeholder="Phone number.." id="pnumberss" name="pnumbers" aria-describedby="basic-addon1" required>
                             </div>
 
                             <div class="btnContainer02 clearFix">
@@ -636,6 +636,7 @@
     </div>
     <!--- wrapper --->
 
+<!--    <script src="assets/js/jquery-3.4.1.min.js"></script>-->
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     <script src="assets/js/jquery-ui.js"></script>
     <script src="assets/js/jquery.validate.js"></script>

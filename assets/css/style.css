@@ -1,3 +1,45 @@
+/* Custom checkbox */
+.myinput.large.custom[type="checkbox"]:checked:after {
+  background-image: url(../img/hla_check.png);
+}
+
+.myinput.large.custom[type="checkbox"]:not(:disabled):checked:hover:after {
+  background-image: url(../img/hla_check.png);
+}
+
+/* Main Classes */
+.myinput[type="checkbox"]:before {
+  position: relative;
+  display: block;
+  width: 27px;
+  height: 27px;
+  border: 1px solid none;
+  content: "";
+  background: #FFF;
+}
+
+.myinput[type="checkbox"]:after {
+position: relative;
+    display: block;
+    left: -3px;
+    top: -18px;
+    background-color: #fff;
+    width: 27px;
+    height: 27px;
+    border-radius: 20px;
+    border: 3px solid #25a69d;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.msgDesc span a {
+    color: #25a69d;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
 /* FONT */
 @font-face {
     font-family: ProximaNova;
@@ -904,7 +946,7 @@ footer .footerBlock .footerContentB p {
 }
 
 .agreement span {
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 .formInfo > p.enquiryText {

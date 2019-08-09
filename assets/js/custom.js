@@ -1,3 +1,62 @@
+//    $.validator.addMethod("ffname", function(value, element) {
+//  return this.optional(element) || /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(value);
+//}, 'Please enter a valid name');
+
+$.validator.addMethod("ffnumber", function (value, element) {
+    return this.optional(element) || /^0(4){1}[0-9]{8}$/.test(value);
+}, 'Please enter a phone number');
+
+$.validator.addMethod("numbs", function (value, element) {
+    return this.optional(element) || /^0(4){1}[0-9]{8}$/.test(value);
+}, 'Please enter a phone number');
+
+$.validator.addMethod("address", function (value, element) {
+    return this.optional(element) || /^(.+),[\s]*(.+),[\s]*(\d{4})$/.test(value);
+}, "Please select your suburb from the drop down list after typing in your postcode.");
+
+var errorMsg,
+    dynaEMsg = function () {
+        return errorMsg;
+    }
+
+
+$.validator.addMethod("ffname", function (value, element) {
+    errorMsg = 'Please enter full name';
+    var result = true,
+        elemval = $.trim(value),
+        fullname_test = elemval.split(' '),
+        patt = new RegExp(/^[a-zA-Z-' ]+$/),
+        firstname = '',
+        lastname = '',
+        placeholder = $(element).attr('data-placeholder');
+
+    if (fullname_test.length < 2) {
+        errorMsg = 'Please enter your first name and last name';
+        result = false;
+    } else {
+        lastname = fullname_test[fullname_test.length - 1];
+        for (var i = 0; i < fullname_test.length - 1; i++) {
+            if (i > 0) {
+                firstname += ' ';
+            }
+            firstname += fullname_test[i];
+        }
+        if (firstname.length < 2 || lastname.length < 2) {
+            errorMsg = 'Name under 2 characters'
+            result = false;
+        } else if (firstname == lastname) {
+            errorMsg = 'Firstname and lastname identical';
+            result = false;
+        } else if (!patt.test(elemval)) {
+            errorMsg = 'Please enter only alphabets';
+            result = false
+        }
+    }
+
+    return result;
+
+}, dynaEMsg);
+
 $(document).ready(function () {
 
 
@@ -33,12 +92,12 @@ $(document).ready(function () {
             }, 1);
         }
 
+        //        sessionStorage.removeItem('hasDebt');
+        //        sessionStorage.removeItem('hasPartner');
+
     });
 
-    document.getElementById("myLink").onclick = function () {
-        // do things, and then
-        return false;
-    };
+
 
     //    $('[data-button-next]').on('click', function (e) {
     $('[data-button-next]').click(function (e) {
@@ -47,18 +106,33 @@ $(document).ready(function () {
         var increment = parseInt(currentStep.replace('#step', '')) + 1;
         var nextStep = '#step' + increment;
         var form = $("#theForm");
-
+        var hasPartner = sessionStorage.getItem('hasPartner');
+        console.log(nextStep);
         form.validate({
             rules: {
                 usdollar: {
                     required: true,
-                    minlength: 6,
+                    minlength: 7,
+                },
+                verNum: {
+                    digits: true,
+                    maxlength: 1,
+                    required: true,
+                },
+                fname: {
+                    required: true,
+                    ffname: true,
+                },
+                fnumber: {
+                    required: true,
+                    ffnumber: true,
                 },
                 radchoices: {
                     required: true,
                 },
                 location: {
                     required: true,
+                    address: true,
                 }
             },
             messages: {
@@ -70,11 +144,45 @@ $(document).ready(function () {
 
         if (form.valid() == true) {
 
+            //            if ( $('#step' + (currentStep + 1)).attr('data-hide-partner') && !hasPartner  ) {
+            //
+            //                nextStep = '#step' + (increment + 1);
+            //                console.log('without partner: ', nextStep);
+            //                $(currentStep).hide();
+            //                $(nextStep).show();
+            //                window.location.hash = nextStep;
+            //                updateProgressBar(true, increment - 1);
+            //                
+            //            } else {
+            //                $(currentStep).hide();
+            //                $(nextStep).show();
+            //                window.location.hash = nextStep;
+            //                updateProgressBar(true, increment - 1);
+            //            }
+            //             $(currentStep).hide();
+            //            if ( !hasPartner ){
+            //                if (typeof $('#step' + (increment+1)).data('hide-partner') !== undefined  ) {
+            //                        nextStep = '#' + $('#step' + (increment+1)).next().attr('id');
+            //                     $(nextStep).show();
+            //                    window.location.hash = nextStep;
+            //                    updateProgressBar(true, increment - 1);
+            //                    } else {
+            //                          $(nextStep).show();
+            //                    window.location.hash = nextStep;
+            //                    updateProgressBar(true, increment - 1);
+            //                    }
+            //            } else {
+            //                  $(nextStep).show();
+            //                    window.location.hash = nextStep;
+            //                    updateProgressBar(true, increment - 1);
+            //            }
+
+
+
             $(currentStep).hide();
             $(nextStep).show();
             window.location.hash = nextStep;
             updateProgressBar(true, increment - 1);
-
         }
 
         if (location.hash) {
@@ -83,6 +191,67 @@ $(document).ready(function () {
             }, 1);
         }
 
+
+
+    });
+
+
+
+
+    //    $('#step7 [data-button-next]').on('click', function(e) {
+    //        var hasPartner;
+    //        if ( $(this).attr('id') === 'radpartnery' ) {
+    //            hasPartner = true;
+    //        }        
+    //        sessionStorage.setItem('hasPartner', hasPartner);
+    //    });
+    //    
+    //     $('#step12 [data-button-next]').on('click', function(e) {
+    //        var hasDebt;
+    //         
+    //        if ( $(this).attr('id') === 'hasDebt' ) {
+    //            hasPartner = true;
+    //        }
+    //        sessionStorage.setItem('hasDebt', hasPartner);
+    //    });
+
+
+    var onelength = function (elem) {
+
+        var input_index = parseInt(elem.attr('id').split('inputsms')[1]) + 1,
+            input_next = $('#inputsms' + input_index),
+            input_val = elem.val();
+
+        if (input_val.length > 1)
+            elem.val(input_val.slice(0, 1))
+
+        if (input_val.length >= 1 && input_index <= 4)
+            input_next.focus();
+
+    }
+
+    $('.oneleng').keydown(function (event) {
+        onelength($(this));
+
+        var input_index = parseInt($(this).attr('id').split('inputsms')[1]) - 1,
+            key = event.keyCode || event.charCode;
+
+        if ((key == 8 || key == 46) && input_index !== 0) {
+            $(this).val('');
+            $('#inputsms' + input_index).focus();
+        }
+
+        if (key === 13) {
+            $(this).parents('form').find('button').click();
+        }
+    });
+
+    $('.oneleng').keyup(function () {
+        onelength($(this));
+    });
+
+    $('.oneleng').focus(function () {
+        $(this).val('');
     });
 
     //    $('[data-btn-sub]').on('click', function (event) {
@@ -95,7 +264,8 @@ $(document).ready(function () {
             rules: {
 
                 pnumbers: {
-                    required: true
+                    required: true,
+                    numbs: true,
                 },
             },
             messages: {
@@ -137,13 +307,23 @@ $(document).ready(function () {
     });
 
     function updateProgressBar(toIncrement, step) {
+        //        var hasPartner = sessionStorage.getItem('hasPartner');
+        //        var hasDebt = sessionStorage.getItem('hasDebt');
+        //        var noPartnerSteps = $('[data-hide-partner]').length;
+        //        var noDebtSteps = $('[data-hide-partner]').length;
         var progressBar = $('.progress-bar');
+        //        var numSteps = 16;
+        //        if (!hasPartner) {
+        //            numSteps - noPartnerSteps;
+        //        } else if (!hasDebt) {
+        //               numSteps - noDebtSteps;     
+        //        }
         var progress = 100 / 16;
         var totalProgress = step * progress;
 
         if (window.location.hash === '#step16') {
             progressBar.css('width', '93.75');
-            $('.modal').show();
+            //            $('.modal').show();
             $('.stepHero h2:contains("Congratulations, looks like you qualify for some great home loan deals.")').text("Now check your phone.");
             $('.stepHero div p').hide();
             $('.stepHero h2').removeClass('pShow').css('text-align', 'left');
@@ -167,8 +347,6 @@ $(document).ready(function () {
             $('.stepHero div p').addClass('pShows');
             $('.stepHero h2').addClass('pShow');
             $('.stepHero').addClass('pShow2');
-        } else if (window.location.hash === '#step3') {
-            $('.stepHero h2:contains("Ok, you want to buy a home or move – that’s exciting.")').text("Let’s start by calculating how much you need to borrow.");
         }
 
         if (window.location.hash === '#step15' || window.location.hash === '#step17') {
@@ -201,62 +379,48 @@ $(document).ready(function () {
         }, 'slow', 'swing');
     });
 
+
+
+    $('.resendBtn').click(function (e) {
+        e.preventDefault();
+        $('.modal').show();
+    });
+
+    $('.btnClose').click(function (e) {
+        e.preventDefault();
+        $('.modal').hide();
+    });
+
+
+});
+
+
+var dataArr = [];
+$.ajax({
+    url: "http://cdn.alternativemedia.com.au/geodata.json",
+    success: data => {
+        $.each(data, function (name, val) {
+            val[2] = val[2].length < 4 ? '0' + val[2] : val[2];
+            dataArr.push("" + val.join(', '));
+        });
+    }
 });
 
 
 /* Autocomplete Search Bar */
 $('#suggestion').autocomplete({
-    source: function (request, response) {
+    source: dataArr
+});
 
-        var data = {
-            "success": true,
-            "data": [{
-                "suburb": "Darwin",
-                "state": "NT",
-                "postcode": 800,
-}, {
-                "suburb": "Alawa",
-                "state": "NT",
-                "postcode": 810,
-}, {
-                "suburb": "Brinkin",
-                "state": "NT",
-                "postcode": 810,
-}, {
-                "suburb": "Casuarina",
-                "state": "NT",
-                "postcode": 810,
-}, {
-                "suburb": "Coconut Grove",
-                "state": "NT",
-                "postcode": 810,
-}],
-            "additional_data": {
-                "pagination": {
-                    "start": 0,
-                    "limit": 5,
-                    "more_items_in_collection": true,
-                    "next_start": 5
-                }
-            }
-        };
+$('input.money').keyup(function (event) {
 
-        var datamap = data.data.map(function (i) {
-            return {
-                label: i.suburb + ' ' + i.state + ' ' + i.postcode,
-                value: i.suburb + ' ' + i.state + ' ' + i.postcode,
-                desc: i.suburb
-            }
-        });
+    // skip for arrow keys
+    if (event.which >= 37 && event.which <= 40) return;
 
-        var key = request.term;
-
-        datamap = datamap.filter(function (i) {
-            return i.label.toLowerCase().indexOf(key.toLowerCase()) >= 0;
-        });
-
-        response(datamap);
-    },
-    minLength: 1,
-    delay: 100
+    // format number
+    $(this).val(function (index, value) {
+        return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    });
 });
