@@ -397,7 +397,7 @@ $(document).ready(function () {
 
 var dataArr = [];
 $.ajax({
-    url: "http://cdn.alternativemedia.com.au/geodata.json",
+    url: "//cdn.alternativemedia.com.au/geodata.json",
     success: data => {
         $.each(data, function (name, val) {
             val[2] = val[2].length < 4 ? '0' + val[2] : val[2];
@@ -411,6 +411,33 @@ $.ajax({
 $('#suggestion').autocomplete({
     source: dataArr
 });
+
+
+//$.getJSON("//cdn.alternativemedia.com.au/geodata.json", function(d) {
+//		$.each(d, function(name, val) {
+//			val[2] = val[2].length < 4 ? '0' + val[2] : val[2];
+//			arr.push("" + val.join(', '));
+//		});
+//		$('#suggestion').autoComplete({
+//			minChars: 1,
+//			source: function(term, suggest) {
+//				term = term.toLowerCase();
+//				var choices = arr;
+//				var matches = [];
+//				for (var i = 0; i < choices.length; i++) {
+//					if (choices[i].toLowerCase().indexOf(term) > -1)
+//						matches.push(choices[i]);
+//				}
+//				suggest(matches);
+//			},
+//			onSelect: function(e, term, item) {
+//				$(this).focus();
+//				$('.autocomplete-suggestions').hide();
+//
+//			},
+//			cache: false
+//		});
+//	});
 
 $('input.money').keyup(function (event) {
 
