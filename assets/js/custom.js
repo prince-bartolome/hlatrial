@@ -10,6 +10,12 @@ $.validator.addMethod("address", function (value, element) {
     return this.optional(element) || /^(.+),[\s]*(.+),[\s]*(\d{4})$/.test(value);
 }, "Please select your suburb from the drop down list after typing in your postcode.");
 
+$.validator.addMethod("emailss", function (value, element) {
+    return this.optional(element) || /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+}, "Please enter a valid email address.");
+
+
+
 var errorMsg,
     dynaEMsg = function () {
         return errorMsg;
@@ -118,6 +124,10 @@ $(document).ready(function () {
                 fname: {
                     required: true,
                     ffname: true,
+                },
+                femail: {
+                    required: true,
+                    emailss: true,
                 },
                 fnumber: {
                     required: true,
