@@ -94,8 +94,8 @@ $(document).ready(function () {
             }, 1);
         }
 
-        //        sessionStorage.removeItem('hasDebt');
-        //        sessionStorage.removeItem('hasPartner');
+               sessionStorage.removeItem('noDebt');
+               sessionStorage.removeItem('hasPartner');
 
     });
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
         var nextStep = '#step' + increment;
         var form = $("#theForm");
         var hasPartner = sessionStorage.getItem('hasPartner');
-        console.log(nextStep);
+        // console.log(nextStep);
         form.validate({
             rules: {
                 usdollar: {
@@ -183,14 +183,28 @@ $(document).ready(function () {
             //                    window.location.hash = nextStep;
             //                    updateProgressBar(true, increment - 1);
             //            }
-
-
-
+            
+            // var nextBlock =  $(currentStep)
+            var hasNoDebt = sessionStorage.getItem('noDebt');
             $(currentStep).hide();
-            $(nextStep).show();
-            window.location.hash = nextStep;
-            updateProgressBar(true, increment - 1);
+            if ( hasPartner === 'true' || hasNoDebt ===' true') {
+                var isNotPartner = $(currentStep).next('.bySteps').attr('data-hide-partner');
+                var noDebt = $(currentStep).next('.bySteps').attr('data-hide-debt');
+                if ( isNotPartner === 'true' ) {
+                    nextStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) + 1);   
+                }
+                if ( noDebt === 'true' ) {
+                    nextStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) + 2);   
+                }
 
+                $(nextStep).show();
+                window.location.hash = nextStep;
+                updateProgressBar(true, increment - 1);
+            } else {
+                $(nextStep).show();
+                window.location.hash = nextStep;
+                updateProgressBar(true, increment - 1);
+            }
         }
 
         if (location.hash) {
@@ -206,22 +220,26 @@ $(document).ready(function () {
 
 
 
-    //    $('#step7 [data-button-next]').on('click', function(e) {
-    //        var hasPartner;
-    //        if ( $(this).attr('id') === 'radpartnery' ) {
-    //            hasPartner = true;
-    //        }        
-    //        sessionStorage.setItem('hasPartner', hasPartner);
-    //    });
+    $('#step7 [data-button-next]').on('click', function(e) {
+        var hasPartner;
+        if ( $(this).attr('id') !== 'radpartnery' ) {
+            hasPartner = true;
+        } else {
+            hasPartner = false;
+        }        
+        sessionStorage.setItem('hasPartner', hasPartner);
+    });
     //    
-    //     $('#step12 [data-button-next]').on('click', function(e) {
-    //        var hasDebt;
-    //         
-    //        if ( $(this).attr('id') === 'hasDebt' ) {
-    //            hasPartner = true;
-    //        }
-    //        sessionStorage.setItem('hasDebt', hasPartner);
-    //    });
+        $('#step12 [data-button-next]').on('click', function(e) {
+            var noDebt;
+            
+            if ( $(this).attr('id') === 'hasDebt' ) {
+                noDebt = true;
+            } else {
+                noDebt = false
+            }
+            sessionStorage.setItem('noDebt', noDebt);
+        });
 
 
     var onelength = function (elem) {
@@ -286,11 +304,36 @@ $(document).ready(function () {
         var currentStep = window.location.hash;
         var decrement = parseInt(currentStep.replace('#step', '')) - 1;
         var prevStep = '#step' + decrement;
-
+        
+        var hasPartner = sessionStorage.getItem('hasPartner');
+        var hasNoDebt = sessionStorage.getItem('noDebt');
         $(currentStep).hide();
-        $(prevStep).show();
-        window.location.hash = prevStep;
-        updateProgressBar(false, decrement);
+        if ( hasPartner === 'true' || hasNoDebt ===' true') {
+            var isNotPartner = $(currentStep).prev('.bySteps').attr('data-hide-partner');
+            var noDebt = $(currentStep).prev('.bySteps').attr('data-hide-debt');
+            console.log(isNotPartner);
+            if ( isNotPartner === 'true' ) {
+                prevStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) - 3);
+            }
+            if ( noDebt === 'true' ) {
+                prevStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) - 4);   
+            }
+
+            $(prevStep).show();
+            window.location.hash = prevStep;
+            updateProgressBar(false, decrement);
+        } else {
+            $(prevStep).show();
+            window.location.hash = prevStep;
+            updateProgressBar(false, decrement);
+        }
+
+
+        // $(currentStep).hide();
+        // $(prevStep).show();
+        // window.location.hash = prevStep;
+        // updateProgressBar(false, decrement);
+        
 
         if (location.hash) {
             setTimeout(function () {
@@ -350,7 +393,7 @@ $(document).ready(function () {
             }
         }
 
-        console.log(step, progress, totalProgress, (totalProgress - progress));
+        // console.log(step, progress, totalProgress, (totalProgress - progress));
 
         if (toIncrement) {
             progressBar.css('width', (totalProgress) + '%');
