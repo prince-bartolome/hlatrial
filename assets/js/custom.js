@@ -1,6 +1,4 @@
-//    $.validator.addMethod("ffname", function(value, element) {
-//  return this.optional(element) || /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(value);
-//}, 'Please enter a valid name');
+// Validations
 
 $.validator.addMethod("ffnumber", function (value, element) {
     return this.optional(element) || /^0(4){1}[0-9]{8}$/.test(value);
@@ -14,13 +12,10 @@ $.validator.addMethod("emailss", function (value, element) {
     return this.optional(element) || /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
 }, "Please enter a valid email address.");
 
-
-
 var errorMsg,
     dynaEMsg = function () {
         return errorMsg;
     }
-
 
 $.validator.addMethod("ffname", function (value, element) {
     errorMsg = 'Please enter full name';
@@ -61,17 +56,12 @@ $.validator.addMethod("ffname", function (value, element) {
 
 $(document).ready(function () {
 
-
-
-
-
     $('a[href="#"]').click(function (e) {
         e.preventDefault();
     });
 
     $('.btnContainer').hide();
 
-    //    $('[data-next]').on('click', function (e) {
     $('[data-next]').click(function (e) {
         e.preventDefault();
 
@@ -94,14 +84,31 @@ $(document).ready(function () {
             }, 1);
         }
 
-               sessionStorage.removeItem('noDebt');
-               sessionStorage.removeItem('hasPartner');
+        sessionStorage.removeItem('noDebt');
+        sessionStorage.removeItem('hasPartner');
 
     });
 
+    $('#step7 [data-button-next]').on('click', function (e) {
+        var hasPartner;
+        if ($(this).attr('id') === 'radpartnery') {
+            hasPartner = true;
+        } else {
+            hasPartner = false;
+        }
+        sessionStorage.setItem('hasPartner', hasPartner);
+    });
+    $('#step12 [data-button-next]').on('click', function (e) {
+        var noDebt;
 
+        if ($(this).attr('id') === 'hasDebt') {
+            noDebt = true;
+        } else {
+            noDebt = false
+        }
+        sessionStorage.setItem('noDebt', noDebt);
+    });
 
-    //    $('[data-button-next]').on('click', function (e) {
     $('[data-button-next]').click(function (e) {
         e.preventDefault();
         var currentStep = window.location.hash;
@@ -109,7 +116,6 @@ $(document).ready(function () {
         var nextStep = '#step' + increment;
         var form = $("#theForm");
         var hasPartner = sessionStorage.getItem('hasPartner');
-        // console.log(nextStep);
         form.validate({
             rules: {
                 usdollar: {
@@ -151,59 +157,40 @@ $(document).ready(function () {
 
         if (form.valid() == true) {
 
-            //            if ( $('#step' + (currentStep + 1)).attr('data-hide-partner') && !hasPartner  ) {
-            //
-            //                nextStep = '#step' + (increment + 1);
-            //                console.log('without partner: ', nextStep);
-            //                $(currentStep).hide();
-            //                $(nextStep).show();
-            //                window.location.hash = nextStep;
-            //                updateProgressBar(true, increment - 1);
-            //                
-            //            } else {
-            //                $(currentStep).hide();
-            //                $(nextStep).show();
-            //                window.location.hash = nextStep;
-            //                updateProgressBar(true, increment - 1);
-            //            }
-            //             $(currentStep).hide();
-            //            if ( !hasPartner ){
-            //                if (typeof $('#step' + (increment+1)).data('hide-partner') !== undefined  ) {
-            //                        nextStep = '#' + $('#step' + (increment+1)).next().attr('id');
-            //                     $(nextStep).show();
-            //                    window.location.hash = nextStep;
-            //                    updateProgressBar(true, increment - 1);
-            //                    } else {
-            //                          $(nextStep).show();
-            //                    window.location.hash = nextStep;
-            //                    updateProgressBar(true, increment - 1);
-            //                    }
-            //            } else {
-            //                  $(nextStep).show();
-            //                    window.location.hash = nextStep;
-            //                    updateProgressBar(true, increment - 1);
-            //            }
-            
-            // var nextBlock =  $(currentStep)
             var hasNoDebt = sessionStorage.getItem('noDebt');
+
             $(currentStep).hide();
-            if ( hasPartner === 'true' || hasNoDebt ===' true') {
+
+            if (hasPartner !== 'true' || hasNoDebt !== 'true') {
+
                 var isNotPartner = $(currentStep).next('.bySteps').attr('data-hide-partner');
                 var noDebt = $(currentStep).next('.bySteps').attr('data-hide-debt');
-                if ( isNotPartner === 'true' ) {
-                    nextStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) + 1);   
+
+                if (isNotPartner === 'true' && hasPartner !== 'true') {
+                    nextStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) + 1);
                 }
-                if ( noDebt === 'true' ) {
-                    nextStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) + 2);   
+
+                if (noDebt === 'true') {
+
+                    if (hasPartner === 'true') {
+                        nextStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) + 1);
+
+                    } else if (hasNoDebt === 'false') {
+                        nextStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) + 2);
+                    }
+
                 }
 
                 $(nextStep).show();
                 window.location.hash = nextStep;
                 updateProgressBar(true, increment - 1);
+
             } else {
+
                 $(nextStep).show();
                 window.location.hash = nextStep;
                 updateProgressBar(true, increment - 1);
+
             }
         }
 
@@ -213,67 +200,8 @@ $(document).ready(function () {
             }, 1);
         }
 
-
-
     });
 
-
-
-
-    $('#step7 [data-button-next]').on('click', function(e) {
-        var hasPartner;
-        if ( $(this).attr('id') !== 'radpartnery' ) {
-            hasPartner = true;
-        } else {
-            hasPartner = false;
-        }        
-        sessionStorage.setItem('hasPartner', hasPartner);
-    });
-    //    
-        $('#step12 [data-button-next]').on('click', function(e) {
-            var noDebt;
-            
-            if ( $(this).attr('id') === 'hasDebt' ) {
-                noDebt = true;
-            } else {
-                noDebt = false
-            }
-            sessionStorage.setItem('noDebt', noDebt);
-        });
-
-
-    var onelength = function (elem) {
-        var input_index = parseInt(elem.attr('id').split('inputsms')[1]) + 1,
-            input_next = $('#inputsms' + input_index),
-            input_val = elem.val();
-        if (input_val.length > 1)
-            elem.val(input_val.slice(0, 1))
-        if (input_val.length >= 1 && input_index <= 4)
-            input_next.focus();
-    }
-
-    $('.oneleng').keydown(function (event) {
-        onelength($(this));
-        var input_index = parseInt($(this).attr('id').split('inputsms')[1]) - 1,
-            key = event.keyCode || event.charCode;
-
-        if ((key == 8 || key == 46) && input_index !== 0) {
-            $(this).val('');
-            $('#inputsms' + input_index).focus();
-        }
-
-        if (key === 13) {
-            $(this).parents('form').find('button').click();
-        }
-    });
-
-    $('.oneleng').keyup(function () {
-        onelength($(this));
-    });
-
-    $('.oneleng').focus(function () {
-        $(this).val('');
-    });
 
     $('[data-btn-sub]').on('click', function (e) {
         e.preventDefault();
@@ -299,67 +227,96 @@ $(document).ready(function () {
     });
 
     $('[data-button-prev]').on('click', function (e) {
-        e.preventDefault();
 
+        e.preventDefault();
         var currentStep = window.location.hash;
         var decrement = parseInt(currentStep.replace('#step', '')) - 1;
         var prevStep = '#step' + decrement;
-        
         var hasPartner = sessionStorage.getItem('hasPartner');
         var hasNoDebt = sessionStorage.getItem('noDebt');
         $(currentStep).hide();
-        if ( hasPartner === 'true' || hasNoDebt ===' true') {
+
+        if (hasPartner !== 'true' || hasNoDebt !== ' true') {
+
             var isNotPartner = $(currentStep).prev('.bySteps').attr('data-hide-partner');
             var noDebt = $(currentStep).prev('.bySteps').attr('data-hide-debt');
-            console.log(isNotPartner);
-            if ( isNotPartner === 'true' ) {
-                prevStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) - 3);
+
+            if (isNotPartner === 'true') {
+                prevStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) - 3);
             }
-            if ( noDebt === 'true' ) {
-                prevStep = '#step' + (parseInt( $(currentStep).next('.bySteps').attr('id').replace('step', '')) - 4);   
+            if (noDebt === 'true') {
+                if (hasPartner) {
+                    prevStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) - 3);
+                } else {
+                    prevStep = '#step' + (parseInt($(currentStep).next('.bySteps').attr('id').replace('step', '')) - 4);
+                }
             }
 
             $(prevStep).show();
             window.location.hash = prevStep;
             updateProgressBar(false, decrement);
+
         } else {
+
             $(prevStep).show();
             window.location.hash = prevStep;
             updateProgressBar(false, decrement);
+
         }
 
+        var oneInputBox = function (elem) {
 
-        // $(currentStep).hide();
-        // $(prevStep).show();
-        // window.location.hash = prevStep;
-        // updateProgressBar(false, decrement);
-        
+            var input_index = parseInt(elem.attr('id').split('isms')[1]) + 1,
+                input_next = $('#isms' + input_index),
+                input_val = elem.val();
+
+            if (input_val.length > 1)
+                elem.val(input_val.slice(0, 1))
+            if (input_val.length >= 1 && input_index <= 4)
+                input_next.focus();
+
+        }
+
+        $('.oneInput').keydown(function (event) {
+
+            oneInputBox($(this));
+            var input_index = parseInt($(this).attr('id').split('isms')[1]) - 1,
+                key = event.keyCode || event.charCode;
+
+            if ((key == 8 || key == 46) && input_index !== 0) {
+                $(this).val('');
+                $('#isms' + input_index).focus();
+            }
+
+            if (key === 13) {
+                $(this).parents('form').find('button').click();
+            }
+
+        });
+
+        $('.oneInput').keyup(function () {
+            oneInputBox($(this));
+        });
+
+        $('.oneInput').focus(function () {
+            $(this).val('');
+        });
 
         if (location.hash) {
             setTimeout(function () {
                 window.scrollTo(0, 0);
             }, 1);
         }
+
     });
 
     function updateProgressBar(toIncrement, step) {
-        //        var hasPartner = sessionStorage.getItem('hasPartner');
-        //        var hasDebt = sessionStorage.getItem('hasDebt');
-        //        var noPartnerSteps = $('[data-hide-partner]').length;
-        //        var noDebtSteps = $('[data-hide-partner]').length;
         var progressBar = $('.progress-bar');
-        //        var numSteps = 16;
-        //        if (!hasPartner) {
-        //            numSteps - noPartnerSteps;
-        //        } else if (!hasDebt) {
-        //               numSteps - noDebtSteps;     
-        //        }
         var progress = 100 / 16;
         var totalProgress = step * progress;
 
         if (window.location.hash === '#step16') {
             progressBar.css('width', '93.75');
-            //            $('.modal').show();
             $('.stepHero h2:contains("Congratulations, looks like you qualify for some great home loan deals.")').text("Now check your phone.");
             $('.stepHero div p').hide();
             $('.stepHero h2').removeClass('pShow').css('text-align', 'left');
@@ -393,8 +350,6 @@ $(document).ready(function () {
             }
         }
 
-        // console.log(step, progress, totalProgress, (totalProgress - progress));
-
         if (toIncrement) {
             progressBar.css('width', (totalProgress) + '%');
         } else {
@@ -413,9 +368,6 @@ $(document).ready(function () {
         $(this).siblings('div').slideToggle();
     });
 
-
-
-
     $('.resendBtn').click(function (e) {
         e.preventDefault();
         $('.modal').show();
@@ -432,7 +384,7 @@ $(document).ready(function () {
 
 });
 
-
+/* Autocomplete Search Bar */
 var dataArr = [];
 $.ajax({
     url: "//cdn.alternativemedia.com.au/geodata.json",
@@ -444,45 +396,13 @@ $.ajax({
     }
 });
 
-
-/* Autocomplete Search Bar */
 $('#suggestion,#suggestion02').autocomplete({
     source: dataArr
 });
 
 
-//$.getJSON("//cdn.alternativemedia.com.au/geodata.json", function(d) {
-//		$.each(d, function(name, val) {
-//			val[2] = val[2].length < 4 ? '0' + val[2] : val[2];
-//			arr.push("" + val.join(', '));
-//		});
-//		$('#suggestion').autoComplete({
-//			minChars: 1,
-//			source: function(term, suggest) {
-//				term = term.toLowerCase();
-//				var choices = arr;
-//				var matches = [];
-//				for (var i = 0; i < choices.length; i++) {
-//					if (choices[i].toLowerCase().indexOf(term) > -1)
-//						matches.push(choices[i]);
-//				}
-//				suggest(matches);
-//			},
-//			onSelect: function(e, term, item) {
-//				$(this).focus();
-//				$('.autocomplete-suggestions').hide();
-//
-//			},
-//			cache: false
-//		});
-//	});
-
 $('input.money').keyup(function (event) {
-
-    // skip for arrow keys
     if (event.which >= 37 && event.which <= 40) return;
-
-    // format number
     $(this).val(function (index, value) {
         return value
             .replace(/\D/g, "")
