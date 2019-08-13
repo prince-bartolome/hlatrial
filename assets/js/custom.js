@@ -264,7 +264,15 @@ $(document).ready(function () {
 
         }
 
-        var oneInputBox = function (elem) {
+        if (location.hash) {
+            setTimeout(function () {
+                window.scrollTo(0, 0);
+            }, 1);
+        }
+
+    });
+    
+    var oneInputBox = function (elem) {
 
             var input_index = parseInt(elem.attr('id').split('isms')[1]) + 1,
                 input_next = $('#isms' + input_index),
@@ -301,14 +309,6 @@ $(document).ready(function () {
         $('.oneInput').focus(function () {
             $(this).val('');
         });
-
-        if (location.hash) {
-            setTimeout(function () {
-                window.scrollTo(0, 0);
-            }, 1);
-        }
-
-    });
 
     function updateProgressBar(toIncrement, step) {
         var progressBar = $('.progress-bar');
