@@ -326,7 +326,7 @@ $(document).ready(function () {
             progressBar.css('width', '100');
             $('.modal').hide();
             $('.stepHero h2:contains("Now check your phone.")').text("Thank you...");
-            $('.stepHero div p:contains("Before we can provide your personalised borrowing power report, well need to grab few more details.")').text("Thanks for leaving those details - we may give you a quick ring to ask a few extra questions to provide you with other home loan options that may be relevant to you.");
+            $('.stepHero div').append("<p>Thanks for leaving those details - we may give you a quick ring to ask a few extra questions to provide you with other home loan options that may be relevant to you.</p>");
             $('.stepHero div p').show().addClass('pShows');
             $('.stepHero h2').addClass('pShow');
             $('.stepHero').addClass('pShow2');
@@ -344,9 +344,11 @@ $(document).ready(function () {
 
         if (window.location.hash === '#step15' || window.location.hash === '#step17') {
             $('.btnContainer').hide();
+            
         } else {
             if (window.location.hash === '#step16') {
                 $('.btnContainer').show();
+                $('p').remove('.pShows');
             }
         }
 
