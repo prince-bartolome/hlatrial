@@ -120,7 +120,7 @@ $(document).ready(function () {
             rules: {
                 usdollar: {
                     required: true,
-                    minlength: 7,
+                    minlength: 6,
                 },
                 verNum: {
                     digits: true,
